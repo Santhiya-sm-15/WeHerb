@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Herbal Garden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background:url('../static/images/body.jpg');
+        }
+        .navbar {
+            background-color:  hsl(83, 70%, 43%);
+            padding: 20px;
+            position: relative;
+        }
+        .navbar a {
+            color: hsl(0, 0%, 100%);
+            margin-left: 20px;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight:bolder;
+        }
+        .navbar a:hover {
+            color: hsl(120, 27%, 77%);
+        }
+        .navbar .company-name {
+            position: absolute;
+            top: 15px;
+            font-weight: bolder;
+            right: 20px;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: hsl(0, 0%, 100%);
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color:#fcfcfc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="text"],select{
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border-radius: 4px;
+            height: 100%;
+            outline: none;
+            font-size: 17px;
+            padding-left: 20px;
+            border: 1px solid lightgrey;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus,select:focus{
+            border-color:#2cca73;
+           }
+        select{
+            padding-right: 40px;
+            appearance: none; /* Remove default arrow */
+            background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg>') no-repeat; /* Add a custom arrow */
+            background-position: right 10px center; /* Move the arrow 10px left */
+            background-size: 10px;
+        }
+        select option:focus{
+            background-color: #2cca73;
+            color: white;
+        }
+        button {
+            margin-top:20px;
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size:20px;
+            font-weight:bold;
+            cursor: pointer;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(-135deg,#0d9757, #77c72c);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(0.95);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .result .bold {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 500px;
+            margin: auto;
+        }
+        .mySlides {
+            display: none;
+            position: relative;
+        }
+        .mySlides img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .hover-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Covers the entire image */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease; /* Smooth transition */
+        }
+        .mySlides:hover .hover-text {
+            opacity: 1; /* Display the text on hover */
+        }
+        .w3-button {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .w3-display-left {
+            left: 0;
+        }
+        .w3-display-right {
+            right: 0;
+        }
+        .note{
+            color:wheat;
+            font-size:20px;
+            margin-bottom:20px;
+        }
+    </style>
+    <script>
+    var slideIndex = 1;
+    var autoSlide;
+    function plusDivs(n) {
+        clearTimeout(autoSlide); // Stop the automatic slideshow
+        showDivs(slideIndex += n);
+        autoResume(); // Start the automatic slideshow again after a delay
+    }
+    function showDivs(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none"; // Hide all slides
+        }
+        slides[slideIndex - 1].style.display = "block"; // Show the current slide
+    }
+    function carousel() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none"; // Hide all slides
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex - 1].style.display = "block"; // Show the current slide
+        autoSlide = setTimeout(carousel, 5000); // Change image every 2 seconds
+    }
+    function autoResume() {
+        clearTimeout(autoSlide); // Ensure any existing timeout is cleared
+        autoSlide = setTimeout(carousel, 3000); // Resume auto slideshow after 3 seconds
+    }
+    window.onload = function() {
+        showDivs(slideIndex); // Display the first slide
+        autoSlide = setTimeout(carousel, 5000); // Start the automatic slideshow
+    };
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('scheme') }}">Scheme</a>
+        <div class="company-name"><b>WeHerb</b><span>&#127793;</span></div>
+    </div>
+    <div class="container">
+        <h1>Virtual Herbal Garden</h1>
+        <form action="/predict" method="POST">
+            <input type="text" name="illness" value="{{ illness }}" autocomplete="off" placeholder="Enter illness" required>
+            <br>
+            <select name="system" required>
+                <option>Select</option>
+                <option value="Ayurvedha" {% if system=="Ayurvedha" %}selected{% endif %}>Ayurvedha</option>
+                <option value="Yoga" {% if system=="Yoga" %}selected{% endif %}>Yoga</option>
+                <option value="Unani" {% if system=="Unani" %}selected{% endif %}>Unani</option>
+                <option value="Siddha" {% if system=="Siddha" %}selected{% endif %}>Siddha</option>
+                <option value="Homeopathy" {% if system=="Homeopathy" %}selected{% endif %}>Homeopathy</option>
+            </select>
+            <br>
+            <button class="btn" type="submit">Get Remedy</button>
+        </form>
+        <div class="result">
+            <div>
+                {% if remedy %}
+                    <h2>Remedies for {{ illness }}:</h2>
+                    {% for key, value in remedy.items() %}
+                        {% if key == system+'_description' %}
+                            <br><p><strong class="bold">Description:</strong><br>{{ value | safe }}</p>
+                        {% endif %}
+                        {% if key.endswith('_images') %}
+                            <br><p><strong class="bold">Related Images:</strong></p>
+                            <div class="slideshow-container">
+                                {% for image_path in value %}
+                                    {% if image_path %}
+                                        <div class="mySlides">
+                                            <img src="{{ image_path }}" alt="Remedy Image">
+                                            <div class="hover-text">{{ image_path.split('/')[-1].rsplit('.', 1)[0] }}</div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                            </div>
+                        {% endif %}
+                        {% if key == system %}
+                            {% if system=="Yoga" %}
+                                <p><strong class="bold">Yogas:</strong></p>
+                            {% elif system %}
+                                <p><strong class="bold">Ingredients:</strong></p>
+                            {% endif %}
+                            {% for ing in value %}
+                                <p>{{ ing | safe }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% elif error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <marquee class="note"><strong>Note:</strong> It is only a remedy. In case of emergency and if severity increases, please consult a doctor.</marquee>
+</body>
+</html>

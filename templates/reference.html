@@ -1,0 +1,175 @@
+<html></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 25px;
+            padding-top: 5px;
+            margin: 0;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../static/images/body.jpg') center / cover no-repeat;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        .navbar {
+            background-color: hsl(19, 82%, 21%);
+            padding: 20px;
+            position: relative;
+        }
+        .navbar a {
+            color: hsl(128, 75%, 33%);
+            margin-left: 20px;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight: bolder;
+        }
+        .navbar a:hover {
+            color: hsl(128, 75%, 70%);
+        }
+        .navbar .company-name {
+            position: absolute;
+            top: 15px;
+            font-weight: bolder;
+            right: 20px;
+            font-size: 30px;
+            color: hsl(128, 75%, 33%);
+        }
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.233);
+            border: 2px;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 100px 100px 100px 100px;
+            overflow-x: auto;
+        }
+        .color {
+            color:azure;
+        }
+        ul {
+            padding:5px;
+        }
+        li {
+            margin-bottom: 15px;
+            list-style-type: none;
+        }
+        center {
+            display: block;
+            margin: 10px 0;
+            color:hsl(19, 82%, 21%);
+            font-weight:bolder;
+        }
+        table{
+            color:beige;
+            width: 100%;
+            border-collapse: collapse   ;
+        }
+        th,td{
+            padding:10px;
+            word-wrap: break-word;
+        }
+        th{
+            border-bottom: solid 2px beige;
+        }
+        a{
+            text-decoration: none;
+            color:beige;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('reference') }}">Reference</a>
+        <div class="company-name"><b>WeHerb</b><span>&#127793;</span></div>
+    </div>
+    <div class="content-box">
+        <table>
+            <tr border="none">
+                <th>Name of the Portal</th>
+                <th>Purpose</th>
+                <th>Objective</th>
+                <th>Link</th>
+            </tr>
+            <tr>
+                <td>A-HMIS</td>
+                <td>Dedicated portal for AYUSH Electronic Health Records (EHR)</td>
+                <td>To improve patient care,work efficiency, research,efficient management of hospital, documentation,and collect the morbidities codes</td>
+                <td><a href="https://ehr.ayush.gov.in/ayush//">https://ehr.ayush.gov.in/ayush//</a></td>
+            </tr>
+            <tr>
+                <td>NAMASTE</td>
+                <td>A comprehensive webportal for AYUSH terminologies</td>
+                <td>To provide the standardized terminologies and national morbidity codes of ASU medicine and WHO-ICD-10 and ICD-11.</td>
+                <td><a href="http://namstp.ayush.gov.in/#/about_us/">http://namstp.ayush.gov.in/#/about_us/</a></td>
+            </tr>
+            <tr>
+                <td>AYUSH Suruksha</td>
+                <td>Pharmacovigilance portal for ASU drugs</td>
+                <td>To generate evidence for clinical safety, drugs and surveillance of misleading advertisements.</td>
+                <td><a href="https://www.ayushsuraksha.com/">https://www.ayushsuraksha.com/</a></td>
+            </tr>
+            <tr>
+                <td>e-Aushadhi</td>
+                <td>A complete supply chain management System for AYUSH</td>
+                <td>To make a transparent system for procurement, storage and distribution of quality drugs, supplies and equipment's etc</td>
+                <td><a href="http://www.e-aushadhi.gov.in">http://www.e-aushadhi.gov.in</a></td>
+            </tr>
+            <tr>
+                <td>e-Charak</td>
+                <td>An electronic channel of market for herbs, aromatic and raw materials</td>
+                <td>To provide an online market portal for trade of medicinal plants</td>
+                <td><a href="https://echarak.in/echarak/">https://echarak.in/echarak/</a></td>
+            </tr>
+            <tr>
+                <td>TKDL</td>
+                <td>Documenting the traditional knowledge in digital format and prevention of biopiracy</td>
+                <td>To protect the ancient traditional knowledge from exploitation through bio piracy and unethical patents.</td>
+                <td><a href="http://www.tkdl.res.in/tkdl/langdefault/common/Home.asp?GL¼Eng">http://www.tkdl.res.in/tkdl/langdefault/common/Home.asp?GL¼Eng</a></td>
+            </tr>
+            <tr>
+                <td>AYUSH research portal</td>
+                <td>Database for AYUSH research articles</td>
+                <td>To index and disseminate of research findings in the AYUSH</td>
+                <td><a href="http://ayushportal.nic.in//">http://ayushportal.nic.in//</a></td>
+            </tr>
+            <tr>
+                <td>DHARA</td>
+                <td>Providing online indexing services for Ayurveda articles</td>
+                <td>To index Ayurveda research articles</td>
+                <td><a href="http://www.dharaonline.org/Forms/Home.aspx">http://www.dharaonline.org/Forms/Home.aspx</a></td>
+            </tr>
+            <tr>
+                <td>RMIS</td>
+                <td>Archive of AYUSH post graduate students (PG) thesis and dissertations</td>
+                <td>To assist in the Research methodology and carrying out research, data analysis and publications.</td>
+                <td><a href="https://rmis.nic.in/#/home/">https://rmis.nic.in/#/home/</a></td>
+            </tr>
+            <tr>
+                <td>eCHLAS</td>
+                <td>Electronic library to bring forth the index of research publications of various journals.</td>
+                <td>To index the research publications published in homeopathy.</td>
+                <td><a href="https://www.ccrhindia.nic.in/index1.aspx?lsid¼6681&amp;lev¼2&amp;lid¼4619&amp;Regid¼0&amp;langid¼1/">https://www.ccrhindia.nic.in/index1.aspx?lsid¼6681&amp;lev¼2&amp;lid¼4619&amp;Regid¼0&amp;langid¼1/</a></td>
+            </tr>
+            <tr>
+                <td>Siddha eNIS app</td>
+                <td>Mobile application consists information about Siddha, its therapies, types of medications, and details about NIS</td>
+                <td>To provide the basic information about Siddha and NIS services</td>
+                <td><a href="https://play.google.com/store/apps/details?id¼cdac.org.siddhaapp&amp;hl¼en_IN/">https://play.google.com/store/apps/details?id¼cdac.org.siddhaapp&amp;hl¼en_IN/</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

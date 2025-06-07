@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background:url('../static/images/body.jpg');
+        }
+        .navbar {
+            background-color:  hsl(83, 70%, 43%);
+            padding: 20px;
+            position: relative;
+        }
+        .navbar a {
+            color: hsl(0, 0%, 100%);
+            margin-left: 20px;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight:bolder;
+        }
+        .navbar a:hover {
+            color: hsl(120, 27%, 77%);
+        }
+        .navbar .company-name {
+            position: absolute;
+            top: 15px;
+            font-weight: bolder;
+            right: 20px;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: hsl(0, 0%, 100%);
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color:#fcfcfc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="text"],select{
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border-radius: 4px;
+            height: 100%;
+            outline: none;
+            font-size: 17px;
+            padding-left: 20px;
+            border: 1px solid lightgrey;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus,select:focus{
+            border-color:#2cca73;
+           }
+        select{
+            padding-right: 40px;
+            appearance: none; /* Remove default arrow */
+            background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg>') no-repeat; /* Add a custom arrow */
+            background-position: right 10px center; /* Move the arrow 10px left */
+            background-size: 10px;
+        }
+        select option:focus{
+            background-color: #2cca73;
+            color: white;
+        }
+        button {
+            margin-top:20px;
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size:20px;
+            font-weight:bold;
+            cursor: pointer;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(-135deg,#0d9757, #77c72c);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(0.95);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .result .bold {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('scheme') }}">Scheme</a>
+        <div class="company-name"><b>WeHerb</b><span>&#127793;</span></div>
+    </div>
+    <div class="container">
+        <h1>Virtual Herbal Garden</h1>
+        <form action="/find" method="POST">
+            <select name="system" required>
+                <option>Select system</option>
+                <option value="Ayurvedha" {% if system=="Ayurvedha" %}selected{% endif %}>Ayurvedha</option>
+                <option value="Yoga" {% if system=="Yoga" %}selected{% endif %}>Yoga</option>
+                <option value="Unani" {% if system=="Unani" %}selected{% endif %}>Unani</option>
+                <option value="Siddha" {% if system=="Siddha" %}selected{% endif %}>Siddha</option>
+                <option value="Homeopathy" {% if system=="Homeopathy" %}selected{% endif %}>Homeopathy</option>
+            </select>
+            <br>
+            <select name="age" required>
+                <option>Select age group</option>
+                <option value="Infants" {% if age=="Infants" %}selected{% endif %}>Infants(below 1 yr)</option>
+                <option value="Toddlers" {% if age=="Toddlers" %}selected{% endif %}>Toddlers(1-5 yrs)</option>
+                <option value="Children" {% if age=="Children" %}selected{% endif %}>Children(6-12 yrs)</option>
+                <option value="Teens" {% if age=="Teens" %}selected{% endif %}>Teens(13-19 yrs)</option>
+                <option value="Adults" {% if age=="Adults" %}selected{% endif %}>Adults(20-45 yrs)</option>
+            </select>
+            <br>
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="result">
+            <div>
+                {% if remedy %}
+                    <h2>Schemes in {{system}} for {{age}}:</h2>
+                    {% for key, value in remedy.items() %}
+                            {% if key=='Link' %}
+                                <p style="margin-bottom:10px;"><strong class="bold">{{key}} : </strong>&nbsp;&nbsp;<a href="{{value}}" >{{ value | safe }}</a></p>
+                            {% elif key %}
+                                <p style="margin-bottom:10px;"><strong class="bold">{{key}} : </strong>&nbsp;&nbsp;{{ value | safe }}</p>
+                            {% endif %}
+                    {% endfor %}
+                {% elif error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
