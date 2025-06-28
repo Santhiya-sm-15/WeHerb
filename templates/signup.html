@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Signup Form</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    html,body{
+      display: grid;
+      background:url('../static/images/body.jpg');
+    }
+    ::selection{
+      background: #d08641;
+      color: #fff;
+    }
+    .navbar {
+            background-color:  hsl(83, 70%, 43%);
+            padding: 20px;
+            position: relative;
+        }
+        .navbar a {
+            color: hsl(0, 0%, 100%);
+            margin-left: 20px;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight:bolder;
+        }
+        .navbar a:hover {
+            color: hsl(120, 27%, 77%);
+        }
+        .navbar .company-name {
+            position: absolute;
+            top: 15px;
+            font-weight: bolder;
+            right: 20px;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: hsl(0, 0%, 100%);
+        }
+    .wrapper{
+      width: 380px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+      margin: 50px auto;
+    }
+    .wrapper .title{
+      font-size: 35px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 100px;
+      color: #fff;
+      user-select: none;
+      border-radius: 15px 15px 0 0;
+      background: linear-gradient(-135deg, #0d9757, #77c72c);
+    }
+    .wrapper form{
+      padding: 10px 30px 50px 30px;
+    }
+    .wrapper form .field{
+      height: 50px;
+      width: 100%;
+      margin-top: 20px;
+      position: relative;
+    }
+    .wrapper form .field input{
+      height: 100%;
+      width: 100%;
+      outline: none;
+      font-size: 17px;
+      padding-left: 20px;
+      border: 1px solid lightgrey;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    .wrapper form .field input:focus,form .field input:valid{
+      border-color: #2cca73;
+    }
+    .wrapper form .field label{
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      color: #999999;
+      font-weight: 400;
+      font-size: 17px;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+    form .field input:focus ~ label,form .field input:valid ~ label{
+      top: 0%;
+      font-size: 16px;
+      color: #20864e;
+      background: #fff;
+      transform: translateY(-50%);
+    }
+    form .field input[type="submit"]{
+      color: #fff;
+      border: none;
+      width: 50%;
+      margin-left: 25%;
+      padding-left: 0;
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(-135deg,#0d9757, #77c72c);
+      transition: all 0.3s ease;
+    }
+    form .field input[type="submit"]:active{
+      transform: scale(0.95);
+    }
+    form .signup-link{
+      color: #262626;
+      margin-top: 20px;
+      text-align: center;
+    }
+    form .pass-link a,form .signup-link a{
+      color: #20864e;
+      text-decoration: none;
+    }
+    form .pass-link a:hover,form .signup-link a:hover{
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('scheme') }}">Scheme</a>
+        <div class="company-name"><b>WeHerb</b><span>&#127793;</span></div>
+  </div>
+  <div class="wrapper">
+    <div class="title">Signup Form</div>
+    <form id="signupForm" action="{{ url_for('signup') }}" onsubmit="return valid()" method="POST">
+      <div class="field">
+        <input type="text" id="name" autocomplete="off" required>
+        <label>Username</label>
+      </div>
+      <div class="field">
+        <input type="password" id="password" autocomplete="off" required>
+        <label>Password</label>
+      </div>
+      <div class="field">
+        <input type="submit" value="Signup">
+      </div>
+      <div class="signup-link">
+        Already a member? <a href="{{ url_for('login') }}">Login now</a>
+      </div>
+    </form>
+  </div>
+  <script>
+    function valid(){
+            const name = document.getElementById('name').value.trim();
+            const password = document.getElementById('password').value;
+            if (name.length < 3) {
+                alert('Name must be at least 3 characters long.');
+                return false;
+            }
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return false;
+            }
+            return true;
+    }
+  </script>
+</body>
+</html>
