@@ -1,4 +1,4 @@
-**# 🌿 WeHerb** - Virtual Herbal Remedy Finder
+** 🌿 WeHerb** - Virtual Herbal Remedy Finder
 
 **WeHerb** is a web-based platform that brings the power of traditional medicine systems under one roof. It allows users to explore herbal remedies categorized by illness and discover AYUSH-based healing solutions — **Ayurveda, Yoga, Unani, Siddha, and Homeopathy**.
 
@@ -15,12 +15,3 @@
 - **Backend**: Python, Flask
 - **Templates**: Jinja2
 - **Static Files**: Organized in `/static/images/` for remedy visuals
-
-## 📁 Folder Structure
-
-weherb/
-├── static/
-│ └── images/ # Herb and remedy images
-├── templates/
-│ └── index.html # Main UI pages (About, Illness page, etc.)
-├── app.py # Flask application
